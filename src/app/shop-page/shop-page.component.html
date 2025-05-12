@@ -1,0 +1,195 @@
+<div class="breadcrumb">
+    <a href="./index.html" style="font-family: Avenir; margin-right: 7px;">Home</a>
+    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true" class="sL_GJTQ"><path fill-rule="evenodd" d="M8.70710678,4.99810828 L15.068,11.3651083 L15.0722115,11.3620693 L15.7793183,12.0691761 L15.776,12.0721083 L15.7782433,12.0758831 L15.0711365,12.7829899 L15.069,12.7801083 L8.70710678,19.1434929 L8,18.4363861 L14.361,12.0721083 L8,5.70521506 L8.70710678,4.99810828 Z"></path></svg>
+    <span href="#" aria-current="page" style="font-family: Avenir;">All Products</span>
+</div>
+<div id="love"></div>
+<div class="content-container">
+    <aside class="sidebar">
+        <h2 class="sidebar-title">Filter by</h2>
+        <div class="filter-option">
+            <button class="filter-header" (click)="sidePanel(0)">
+                <h3>Category</h3>
+                <span class="filter-icon" *ngIf="!sideButtons[0].boolean">+</span>
+                <span class="filter-icon1" *ngIf="sideButtons[0].boolean">—</span>
+            </button>
+            <div id="siderbar-menus" [classList]="sideButtons[0].boolean ? 'show': ''">
+                <div class="siderbar-menu-options">
+                    <input type="radio" id="allButton" name="box2" [(ngModel)]="isChecked" value="checked" (click)="getAllProducts(1)">
+                    <label for="allButton">All</label>
+                    @for (item of allCategorys; track $index) {
+                        <div class="siderbar-menu-options">
+                            <input type="radio" [id]="item.name" name="box2" (click)="getCategoryId(item.id)">
+                            <label [for]="item.name">{{item.name[0].toUpperCase() + item.name.split("").slice(1).join("")}}</label>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="filter-option">
+            <button class="filter-header" (click)="sidePanel(1)">
+                <h3>Brand</h3>
+                <span class="filter-icon" *ngIf="!sideButtons[1].boolean">+</span>
+                <span class="filter-icon1" *ngIf="sideButtons[1].boolean">—</span>
+            </button>
+            <div id="siderbar-menus" [classList]="sideButtons[1].boolean ? 'show': ''">
+                @for (item of allBrands; track $index) {
+                    <div class="siderbar-menu-options">
+                        <input type="radio" [id]="item" name="box2" (click)="getBrandId(item)">
+                        <label [for]="item">{{item[0].toUpperCase() + item.split("").slice(1).join("")}}</label>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="filter-option">
+            <button class="filter-header" (click)="sidePanel(2)">
+                <h3>Price</h3>
+                <span class="filter-icon" *ngIf="!sideButtons[2].boolean">+</span>
+                <span class="filter-icon1" *ngIf="sideButtons[2].boolean">—</span>
+            </button>
+            <div id="siderbar-menus" [classList]="sideButtons[2].boolean ? 'show': ''">
+                <div class="price-filter">
+                    <div class="price-input">
+                        <div class="field min">
+                            <label>Min</label>
+                            <input type="number" class="input-min" value="750" [min]="minRange" [max]="maxRange" [(ngModel)]="minVal">
+                        </div>
+                        <div class="field max">
+                            <label>Max</label>
+                            <input type="number" class="input-max" value="6250" [min]="minRange" [max]="maxRange" [(ngModel)]="maxVal">
+                        </div>
+                    </div>
+                    <div class="range-input">
+                        <ngx-slider [(value)]="minVal" [(highValue)]="maxVal" [options]="options"></ngx-slider>
+                    </div>
+                    <div class="filterButtonCHanger">
+                        <button class="apply-btn" (click)="getPriceFiltered()">Apply Filter</button>
+                        <button class="apply-btn" (click)="getAllProducts(1)">Reset Filter</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="filter-option">
+            <button class="filter-header" (click)="sidePanel(3)">
+                <h3>Rating</h3>
+                <span class="filter-icon" *ngIf="!sideButtons[3].boolean">+</span>
+                <span class="filter-icon1" *ngIf="sideButtons[3].boolean">—</span>
+            </button>
+            <div id="siderbar-menus" [classList]="sideButtons[3].boolean ? 'show': ''">
+                <div class="rating-container">
+                    <input type="radio" id="rating-radio1" name="box" [(ngModel)]="isChecked2" value="checked" (click)="getAllProducts(1)">
+                    <label for="rating-radio1">select all</label>
+                </div>
+                <div class="rating-container">
+                    <input type="radio" id="rating-radio2" name="box" (click)="getByRating(5)">
+                    <label for="rating-radio2">5 only</label>
+                </div>
+                <div class="rating-container">
+                    <input type="radio" id="rating-radio3" name="box" (click)="getByRating(4)">
+                    <label for="rating-radio3">4 and up</label>
+                </div>
+                <div class="rating-container">
+                    <input type="radio" id="rating-radio4" name="box" (click)="getByRating(3)">
+                    <label for="rating-radio4">3 and up</label>
+                </div>
+                <div class="rating-container">
+                    <input type="radio" id="rating-radio5" name="box" (click)="getByRating(2)">
+                    <label for="rating-radio5">2 and up</label>
+                </div>
+                <div class="rating-container">
+                    <input type="radio" id="rating-radio6" name="box" (click)="getByRating(1)">
+                    <label for="rating-radio6">1 and up</label>
+                </div>
+            </div>
+        </div>
+        <div class="filter-option" id="Hidden">
+            
+            <div id="siderbar-menus">
+                <div class="rating-container">
+                    <input type="radio" id="sortBy-radio1" name="box1" checked>
+                    <label for="sortBy-radio1">Recommended</label>
+                </div>
+                <div class="rating-container">
+                    <input type="radio" id="sortBy-radio2" name="box1">
+                    <label for="sortBy-radio2">Price (Low to High)</label>
+                </div>
+                <div class="rating-container">
+                    <input type="radio" id="sortBy-radio3" name="box1">
+                    <label for="sortBy-radio3">Price (High to Low)</label>
+                </div>
+                <div class="rating-container">
+                    <input type="radio" id="sortBy-radio4" name="box1">
+                    <label for="sortBy-radio4">Name A-Z</label>
+                </div>
+                <div class="rating-container">
+                    <input type="radio" id="sortBy-radio5" name="box1">
+                    <label for="sortBy-radio5">Name Z-A</label>
+                </div>
+            </div>
+        </div>
+        </aside>
+    <main class="product-container">
+        <div class="product-header">
+            <div>
+                <h1 class="product-title">All Products</h1>
+                <p id="product-count"></p>
+            </div>
+            <div class="sort-options">
+                <label for="sortBy1">Sort by: </label>
+                <select id="sortBy1" name="sort" disabled>
+                    <option value="recommended">Recommended</option>
+                    <option value="option1">Price (Low to High)</option>
+                    <option value="option2">Price (High to Low)</option>
+                    <option value="option3">Name A-Z</option>
+                    <option value="option4">Name Z-A</option>
+                </select>
+            </div>
+        </div>
+        <div id="products">
+            @for (datas of allProducts; track $index) {
+                <div class="card">
+                    <div class="image-container" (click)="goToDetails(datas)">
+                      <img [src]="datas.thumbnail" alt="Modern Laptop" referrerpolicy="no-referrer">
+                    </div>
+                    <div class="content">
+                      <div class="name" (click)="goToDetails(datas)">{{datas.title}}</div>
+                      <div class="price-rating" (click)="goToDetails(datas)">
+                        <div class="price">{{datas.price.current}}$</div>
+                        <div class="rating">
+                          <div id="stars" [ngStyle]="{'max-width.px': getRating(datas.rating), 'overflow': 'hidden'}">★★★★★</div>
+                          <div class="reviews">{{getRatingNum(datas.rating)}}</div>
+                        </div>
+                      </div>
+                      <button class="add-button" (click)="addToCart(datas._id)">ADD TO CART</button>
+                      @if (datas.stock < 1) {
+                        <span (click)="goToDetails(datas)" id="noStock${{datas._id}}" class="{{'noStock'}}">No stock</span>
+                      }
+                      <span id="yesStock${{datas._id}}" class="Hidden yesStock">Added to cart</span>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="pagination-container" *ngIf="pagination">
+            <div class="pagination">
+              <button id="arrow-button1" (click)="paginDecrease()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+              </button>
+              <div id="pagination-middle">
+                @for (item of paginNumQuantity; track $index) {
+                    <button id="page-button"  (click)="getAllProducts(paginNumQuantity[$index])" [classList]="paginNumQuantity[$index] == paginNum ? 'active' : ''">{{paginNumQuantity[$index]}}</button>
+                }
+              </div>
+              <button id="arrow-button2" (click)="paginIncrease()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <div id="products-indicator"></div>
+    </main>
+</div>

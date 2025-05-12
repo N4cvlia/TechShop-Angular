@@ -1,0 +1,85 @@
+<div class="sc_container">
+    <h1 class="sc_title">Your Cart (<span id="cartItemCount">{{productss.total.quantity}}</span> items)</h1>
+    
+    <table class="sc_cart_table"> 
+        <thead>
+            <tr>
+                <th class="item-header">Item</th>
+                <th class="price-header">Price</th>
+                <th style="text-align: center;" class="reviews-header">Reviews</th>
+                <th style="text-align: center;" class="quantity-header">Quantity</th>
+                <th class="total-header">Total</th>
+            </tr>
+        </thead>
+        <tbody class="cart-card" id="sc_cart_table">
+            @for (item of productsSecond; track $index) {
+                <tr>
+                    <td>
+                        <div class="sc_product">
+                            <div class="sc_product_image">
+                                <img [src]="item.thumbnail" alt="">
+                            </div>
+                            <div class="sc_product_details">
+                                <h2>{{item.title}}</h2>
+                                <div class="stock-cart">
+                                    <span>In Stock: <span>{{item.stock}}</span></span>
+                                    <div class="rating-cart">
+                                        <span>{{rating(item.rating)}}</span>
+                                        <fa-icon [icon]="faStar" style="color: rgb(255, 149, 0);"></fa-icon>
+                                    </div>
+                                </div>
+                                <div class="reviews-cart">
+                                    <span>Reviews:</span>
+                                    <span>{{item.ratings.length}}</span>
+                                </div>
+                                <div class="sc_price_quantity">
+                                    <span class="sc_price1">${{item.price.current}}</span>
+                                    <div class="sc_quantity1">
+                                        <button class="sc_quantity_btn" (click)="quantityDecrease($index)">-</button>
+                                        <input type="text" [value]="quantitys[$index]" min="1" id="quantityInput${data._id}1" class="sc_quantity_input">
+                                        <button class="sc_quantity_btn" (click)="quantityIncrease($index)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="sc_price2">${{item.price.current}}</td>
+                    <td class="sc_reviews">{{item.ratings.length}}</td>
+                    <td class="sc-quantity2-container">
+                        <div class="sc_quantity2">
+                            <button class="sc_quantity_btn" (click)="quantityDecrease($index)">-</button>
+                            <input type="text" [value]="quantitys[$index]" min="1" id="quantityInput${data._id}2" class="sc_quantity_input">
+                            <button class="sc_quantity_btn" (click)="quantityIncrease($index)">+</button>
+                        </div>
+                    </td>
+                    <td class="total-x">
+                        <div class="sc_total" >${{productss.products[$index].pricePerQuantity * productss.products[$index].quantity}}</div>
+                        
+                    </td>
+                    <td><button class="sc_remove_btn" (click)="deleteProduct(`${item._id}`, $index)">×</button></td>
+                </tr>
+            }
+        </tbody>
+        
+    </table>
+    
+    <div class="sc_cart_totals">
+        <div class="sc_totals_row sc_grand_total">
+            <div class="sc_totals_label">Grand total:</div>
+            <div class="sc_totals_value" id="totalAmount">${{productss.total.price.current}}</div>
+        </div>
+    </div>
+    
+    <div class="sc_shipping_message">
+        <div>
+            Congrats, you're eligible for <span class="sc_free_shipping">Free Shipping</span>
+        </div>
+        <div class="sc_shipping_icon">🚚</div>
+    </div>
+    
+    <div class="sc_checkout_progress">
+        <div class="sc_progress_bar"></div>
+    </div>
+    
+    <button class="sc_checkout_btn" (click)="checkout()">Check out</button>
+</div>

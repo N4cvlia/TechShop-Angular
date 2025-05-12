@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.ngx-slider .ngx-slider-floor{
+    display: none !important;
+}
+.ngx-slider .ngx-slider-ceil{
+    display: none !important;
+}
+.ngx-slider .ngx-slider-model-value {
+    display: none !important;
+}
+.ngx-slider .ngx-slider-model-high {
+    display: none !important;
+}
+.ngx-slider .ngx-slider-combined {
+    display: none !important;
+}
+.ngx-slider .ngx-slider-pointer {
+    background-color: black !important;
+}
+.ngx-slider .ngx-slider-selection{
+    background-color: black !important;
+    border-radius: 5px !important;
+}
+.ngx-slider .ngx-slider-bar {
+    height: 5px !important;
+}

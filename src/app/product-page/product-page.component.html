@@ -1,0 +1,76 @@
+<div class="breadcrumb">
+    <a routerLink="/">Home</a>
+    <span>/</span>
+    <a routerLink="/Shop">All Products</a>
+    <span class="hate">/</span>
+    <span class="hate" id="name1">{{info.title}}</span>
+</div>
+<div class="product-wrapper">
+    <div class="product-container">
+        <div class="product-image-section">
+            <div class="product-image-gradient"><img [src]="images[imageNum]" alt="" id="productImg" referrerpolicy="no-referrer"></div>
+            <div class="image-navigation">
+                <button class="nav-arrow nav-left" (click)="imageNumDecreae()">
+                    <fa-icon [icon]="faChevronLeft"></fa-icon>
+                </button>
+                <button class="nav-arrow nav-right" (click)="imageNumIncrease()">
+                    <fa-icon [icon]="faChevronRight"></fa-icon>
+                </button>
+            </div>
+        </div>
+        <div class="product-details">
+            <div class="product-header">
+                <h1 class="product-title" id="name2">{{info.title}}</h1>
+            </div>
+            <div class="releaseBrand">
+                <span class="ReleaseDate">Release Date: <span id="releaseDate">{{info.issueDate.split("T")[0]}}</span></span>
+                <span class="Brand">Brand: <span id="brand">{{info.brand.split("")[0].toUpperCase() + info.brand.slice(1)}}</span></span>
+            </div>
+            
+            <div class="rating-container">
+                <div class="rating-stars" id="stars"  [ngStyle]="{'max-width.px': ratingNum, 'overflow': 'hidden'}">
+                    <fa-icon [icon]="faStar"></fa-icon>
+                    <fa-icon [icon]="faStar"></fa-icon>
+                    <fa-icon [icon]="faStar"></fa-icon>
+                    <fa-icon [icon]="faStar"></fa-icon>
+                    <fa-icon [icon]="faStar"></fa-icon>
+                </div>
+                <span id="rating">{{rating}}</span>
+            </div>
+            <div class="price-stock-container">
+                <div class="price" id="price">${{info.price.current}}</div>
+            </div>
+            <div class="stock-info" id="stock-info">
+                @if (info.stock > 0) {
+                    <fa-icon [icon]="faCheckCircle" class="stock-icon" id="checkIcon"></fa-icon>
+                    <span>{{info.stock}} Units in stock</span>
+                }@else {
+                    <fa-icon [icon]="faCircleXmark" id="xIcon" style="color: #e63946;"></fa-icon>
+                    <span style="color: #e63946;">{{info.stock}} Units in stock</span>
+                }
+                <span id="stock"></span>
+            </div>
+            <div class="quantity-container">
+                <span class="quantity-label">Quantity</span>
+                <div class="quantity-control">
+                    <button class="quantity-button" (click)="quantityNumDecrease()">-</button>
+                    <input type="text" [value]="quantityNum" min="0" class="quantity-input" id="quantity-input">
+                    <button class="quantity-button" (click)="quantityNumIncrease()">+</button>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="add-to-cart" [class]="info.stock > 0 ? '': 'disabledButton'" (click)="addToCart(info._id)">Add to Cart</button>
+                <button class="favorite-button">
+                    <fa-icon [icon]="faStar"></fa-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="product-info-section">
+        <h2 class="product-info-title">Product Information</h2>
+        <p class="product-info-content" id="product-info-content">
+            {{info.description}}
+        </p>
+    </div>
+</div>

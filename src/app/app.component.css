@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'Avenir';
+    src: url('/public/avenir-lt-pro-cufonfonts/AvenirLTProHeavy.otf') format('otf');
+    font-weight: normal;
+    font-style: normal;
+}
+.Main {
+    margin-top: 83.5px;
+}
+@media screen and (max-width: 657px){
+    .Main {
+        margin-top: 150px
+    }
+}
