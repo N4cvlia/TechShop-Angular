@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { afterNextRender, Component } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import { SubjectsService } from '../subjects.service';
@@ -13,14 +13,18 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './shop-page.component.html',
   styleUrl: './shop-page.component.css'
 })
-export class ShopPageComponent {
+export class ShopPageComponent{
   constructor(private api: ApiService, private routing: Router, private subjects: SubjectsService, private cookie: CookieService){
     this.getAllProducts(1)
     this.getAllCategorys()
     this.getAllBrands()
+    this.subjects.renewCart()
+    this.subjects.renewCartId()
+    this.getCartAvail()
   }
-
+  
   public allProducts: any;
+  public cartAvail: any;
   public isChecked: any = 'checked';
   public isChecked2: any = 'checked';
   public allProductsData: any;
@@ -44,6 +48,12 @@ export class ShopPageComponent {
       boolean: false
     }
   ]
+
+  getCartAvail() {
+    this.subjects.cartAvail.subscribe((data:any) => {
+      this.cartAvail = data
+    })
+  }
 
   sidePanel(num:any) {
     this.sideButtons[num].boolean = !this.sideButtons[num].boolean
@@ -75,25 +85,24 @@ export class ShopPageComponent {
       quantity: 1
     }
     if(this.cookie.get("User")) {
-      this.subjects.cartAvail.subscribe({
-        next: (data: any) => {
-          console.log(data)
-          this.subjects.renewCart()
-          if(data == "") {
-            this.api.addtoCartPost(body).subscribe({
-              next: (data:any) => {
-                this.subjects.getCart()
-              }
-            })
-          }else {
+          if(this.cartAvail) {
             this.api.addtoCartPatch(body).subscribe({
               next: (data:any) => {
-                this.subjects.getCart()
-              }
+                this.subjects.renewCart()
+              },
+              error: (data: any) => console.log(data)
+            })
+          }else {
+            this.subjects.cartAvail.next(true)
+            this.api.addtoCartPost(body).subscribe({
+              next: (data:any) => {
+                this.subjects.renewCart()
+                this.cartAvail = true
+              },
+              error: (data: any) => console.log(data)
             })
           }
-        }
-      })
+          alert("Succesfully added to cart!")
     }else {
       alert("Login before adding items to cart!")
     }

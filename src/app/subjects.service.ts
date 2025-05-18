@@ -14,31 +14,39 @@ export class SubjectsService {
   
   
   getCart() {
-    if(this.cookie.get("User")) {
-      this.api.getCart().subscribe({
-        next: (data:any) => {
-          this.cartNum.next(data.products.length)
-        }
-      })
-      this.api.getAuth().subscribe({
-        next: (data:any) => {
-          this.cartAvail.next(data.cartID)
-          this.authInfo.next(data)
-        }
-      })
+    if(this.cartAvail.value) {
+      if(this.cookie.get("User")) {
+        this.api.getCart().subscribe({
+          next: (data:any) => {
+            this.cartNum.next(data.products.length)
+          }
+        })
+        this.api.getAuth().subscribe({
+          next: (data:any) => {
+            if(data.cartID) {
+              this.cartAvail.next(true)
+            }else {
+              this.cartAvail.next(false)
+            }
+            
+            this.authInfo.next(data)
+          }
+        })
+      }
     }
   }
 
   renewCart() {
-    if(this.cookie.get("User")) {
-      this.api.getCart().subscribe({
-        next: (data:any) => {
-          this.cartNum.next(data.products.length)
-          console.log(data)
-        }
-    })
+    if(this.cartAvail.value) {
+      if(this.cookie.get("User")) {
+        this.api.getCart().subscribe({
+          next: (data:any) => {
+            this.cartNum.next(data.products.length)
+          }
+      })
+    }
   }
-}
+  }
   renewPfp() {
     if(this.cookie.get("User")) {
       this.authInfo.subscribe((data: any) => {
@@ -56,10 +64,26 @@ export class SubjectsService {
   }
 
   public cartNum: BehaviorSubject<number> = new BehaviorSubject(0);
-  public cartAvail: BehaviorSubject<string> = new BehaviorSubject("");
+  public cartAvail: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public authInfo: BehaviorSubject<any> = new BehaviorSubject("")
   public authInfos: BehaviorSubject<any> = new BehaviorSubject("")
   public loaderLogic: BehaviorSubject<boolean> = new BehaviorSubject(false)
+  public checkedOut: BehaviorSubject<boolean> = new BehaviorSubject(false)
+
+  renewCartId() {
+    if(this.cookie.get("User")) {
+      this.api.getAuth().subscribe({
+        next: (data:any) => {
+          if(data.cartID) {
+            this.cartAvail.next(true)
+          }else {
+            this.cartAvail.next(false)
+          }
+          
+        }
+      })
+    }
+  }
 
   shopaction$ = this.cartNum.asObservable()
 }

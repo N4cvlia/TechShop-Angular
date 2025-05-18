@@ -53,7 +53,7 @@
                         </div>
                     </td>
                     <td class="total-x">
-                        <div class="sc_total" >${{productss.products[$index].pricePerQuantity * productss.products[$index].quantity}}</div>
+                        <div class="sc_total" >${{productss.products[$index].pricePerQuantity * quantitys[$index]}}</div>
                         
                     </td>
                     <td><button class="sc_remove_btn" (click)="deleteProduct(`${item._id}`, $index)">×</button></td>

@@ -16,6 +16,8 @@ import { SubjectsService } from '../subjects.service';
 export class CartPageComponent {
   constructor(private api: ApiService, private routing: Router, private subjects: SubjectsService) {
     this.getCart()
+    this.subjects.cartAvail.next(true)
+    this.subjects.renewCart()
   }
 
   public id : any;
@@ -24,7 +26,11 @@ export class CartPageComponent {
 
   public products: any;
 
-  public productss: any
+  public productss: any = {
+    total: {
+      quantity: 0
+    }
+  }
 
   public productsSecond: any[] = []
 
@@ -46,9 +52,11 @@ export class CartPageComponent {
         this.products = data.products
         this.productss = data
         this.getImages(this.id, data)
+        this.subjects.renewCart()
         console.log(this.productss)
       }
     })
+
   }
   getImages(data:any, quantity:any) {
     for(let item of data){
@@ -115,13 +123,14 @@ export class CartPageComponent {
   checkout() {
     this.api.checkuut().subscribe({
       next: (data: any) => {
+        console.log(data)        
+        this.subjects.cartNum.next(0)
+        this.subjects.cartAvail.next(false)
         alert("Succesfully checked out!")
         setTimeout(() => {
           this.routing.navigate(["Shop"])
         }, 1500);
-        this.productsSecond = []
-        this.productss = ""
-        this.subjects.cartAvail.next('')
+        
       }
     })
 
