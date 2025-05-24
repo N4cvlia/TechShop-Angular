@@ -79,7 +79,7 @@ export class SubjectsService {
           }else {
             this.cartAvail.next(false)
           }
-          
+          this.authInfo.next(data.avatar)
         }
       })
     }

@@ -16,8 +16,10 @@ import { SubjectsService } from '../subjects.service';
 export class CartPageComponent {
   constructor(private api: ApiService, private routing: Router, private subjects: SubjectsService) {
     this.getCart()
+    this.subjects.renewCartId();
     this.subjects.cartAvail.next(true)
-    this.subjects.renewCart()
+    this.subjects.renewCart();
+    
   }
 
   public id : any;

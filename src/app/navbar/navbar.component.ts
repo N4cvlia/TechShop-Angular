@@ -4,12 +4,12 @@ import { SubjectsService } from '../subjects.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterModule, FormsModule, CommonModule],
+  imports: [RouterModule, FormsModule, CommonModule, NgOptimizedImage],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -23,9 +23,7 @@ export class NavbarComponent {
   private sub!: Subscription;
 
   public cartNum: number = 0;
-  public auth: any = {
-    avatar: ""
-  }
+  public auth: string = "https://cdn.pfps.gg/pfps/2301-default-2.png";
   public authAvail: boolean = false;
   public searchInput: any = ""
   public searchProducts: any;

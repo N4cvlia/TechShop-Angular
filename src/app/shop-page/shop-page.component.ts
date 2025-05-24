@@ -21,6 +21,7 @@ export class ShopPageComponent{
     this.subjects.renewCart()
     this.subjects.renewCartId()
     this.getCartAvail()
+    this.subjects.renewPfp()
   }
   
   public allProducts: any;
@@ -104,7 +105,7 @@ export class ShopPageComponent{
           }
           alert("Succesfully added to cart!")
     }else {
-      alert("Login before adding items to cart!")
+      this.routing.navigate([""])
     }
     
   }

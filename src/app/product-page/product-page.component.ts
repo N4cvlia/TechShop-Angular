@@ -16,6 +16,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class ProductPageComponent {
   constructor(private detailData: ActivatedRoute, private api : ApiService, private subjects: SubjectsService, private cookie: CookieService){
     this.getId()
+    this.subjects.renewCartId();
   }
   faStar = faStar
   faChevronRight = faChevronRight
