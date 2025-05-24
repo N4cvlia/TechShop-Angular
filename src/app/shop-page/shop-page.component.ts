@@ -105,7 +105,7 @@ export class ShopPageComponent{
           }
           alert("Succesfully added to cart!")
     }else {
-      this.routing.navigate([""])
+      this.routing.navigate(["Login"])
     }
     
   }
