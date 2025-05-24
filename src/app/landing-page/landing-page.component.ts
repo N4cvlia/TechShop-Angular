@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { SubjectsService } from '../subjects.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -7,6 +8,15 @@ import { RouterModule } from '@angular/router';
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css'
 })
-export class LandingPageComponent {
-
+export class LandingPageComponent{
+  constructor(public subjects: SubjectsService) {
+    this.subjects.renewCartId();
+    this.subjects.cartAvail.subscribe({
+      next: (data: boolean) => {
+        if(data) {
+          this.subjects.renewCart();
+        }
+      }
+    })
+  }
 }

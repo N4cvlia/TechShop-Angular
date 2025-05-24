@@ -27,7 +27,8 @@ export class LoginPageComponent {
         this.cookie.set("User", data.access_token),
         setTimeout(() => {
           
-          this.routing.navigate(["/"], {skipLocationChange: true})
+          this.routing.navigate([""], {skipLocationChange: true})
+          
         }, 3000);
         this.succ = true
         this.subjects.getCart()

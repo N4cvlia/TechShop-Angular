@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild, viewChild} from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { SubjectsService } from '../subjects.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -19,8 +19,8 @@ export class NavbarComponent {
     this.getAuth()
   }
 
+  @ViewChild('search') search! : ElementRef;
   private sub!: Subscription;
-  private sub2!: Subscription
 
   public cartNum: number = 0;
   public auth: any = {
@@ -29,10 +29,24 @@ export class NavbarComponent {
   public authAvail: boolean = false;
   public searchInput: any = ""
   public searchProducts: any;
+  public SearchVisib: any = "none";
+
+  @HostListener("document:click", ['$event'])
+  onDocumentClick(event : Event) {
+    if(!this.search.nativeElement.contains(event.target)){
+      this.SearchVisib = "none"
+    }
+  }
 
   getCartNum() {
     this.subjects.cartNum.subscribe((data:any) => {this.cartNum = data})
     this.subjects.authInfos.subscribe((data:any) => this.authAvail = data)
+  }
+
+  searchUp() {
+    this.routing.navigate(["/Details"], {queryParams: this.searchProducts[0]._id});
+    this.searchInput = "";
+    this.SearchVisib = "none";
   }
 
   getAuth() {
@@ -61,7 +75,10 @@ export class NavbarComponent {
   getSearch() {
     this.api.getAllAllProducts().subscribe({
       next: (data:any) => {
-        this.searchProducts = data.products.filter((product: any) => product.title.toLowerCase().includes(this.searchInput.toLowerCase()))
+        this.searchProducts = data.products.filter((product: any) => product.title.toLowerCase().includes(this.searchInput.toLowerCase()));
+        if(this.searchInput.length > 0) {
+          this.SearchVisib = "block"
+        }
       }
     })
   }

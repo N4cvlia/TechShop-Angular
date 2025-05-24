@@ -47,13 +47,11 @@ export class CartPageComponent {
   getCart() {
     this.api.getCart().subscribe({
       next: (data:any) => {
-        console.log(data)
         this.id = data.products.map((data:any) => data.productId)
         this.products = data.products
         this.productss = data
         this.getImages(this.id, data)
         this.subjects.renewCart()
-        console.log(this.productss)
       }
     })
 
@@ -64,13 +62,11 @@ export class CartPageComponent {
         next: (data: any) => {
           this.productsSecond.push(data)
           this.quantitys = quantity.products.map((data:any) => data.quantity)
-          console.log(data)
         }
       })
     }
   }
   deleteProduct(id: any, index: any) {
-    console.log(id)
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -80,6 +76,12 @@ export class CartPageComponent {
     }
     this.api.deleteProduct(options).subscribe((data:any) => {
       this.updateTotal()
+      this.subjects.renewCart()
+      // this.subjects.cartNum.subscribe({
+      //   next: (data: any) => {
+      //     this.subjects.cartNum.next(data--)
+      //   }
+      // })
     })
     this.productsSecond.splice(index, 1)
   }
@@ -99,7 +101,6 @@ export class CartPageComponent {
   }
 
   quantityDecrease(ind: any) {
-    console.log(this.quantitys)
     if(this.quantitys[ind] > 0) {
       this.quantitys[ind]--
       const body = {
@@ -122,8 +123,7 @@ export class CartPageComponent {
 
   checkout() {
     this.api.checkuut().subscribe({
-      next: (data: any) => {
-        console.log(data)        
+      next: (data: any) => {      
         this.subjects.cartNum.next(0)
         this.subjects.cartAvail.next(false)
         alert("Succesfully checked out!")
