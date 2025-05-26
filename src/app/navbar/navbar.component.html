@@ -26,7 +26,7 @@
     <div class="nav-actions">
             <button class="nav-button" *ngIf="authAvail">
                 <button id="customUserMenuBtn" class="custom_user_menu_btn_v1">
-                    <img [ngSrc]="auth" alt="" id="loginImage" referrerpolicy="no-referrer" class="user-icon" style="border-radius: 50%; height: 30px; width: 30px;">
+                    <img [src]="auth" alt="" id="loginImage" referrerpolicy="no-referrer" class="user-icon" style="border-radius: 50%; height: 30px; width: 30px;">
                 </button>
             </button>
             <button class="nav-button" routerLink="/Login" id="loginIcon" *ngIf="!authAvail">

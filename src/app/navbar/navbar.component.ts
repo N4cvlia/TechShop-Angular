@@ -4,12 +4,12 @@ import { SubjectsService } from '../subjects.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule} from '@angular/common';
 import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterModule, FormsModule, CommonModule, NgOptimizedImage],
+  imports: [RouterModule, FormsModule, CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
