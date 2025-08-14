@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SubjectsService } from '../subjects.service';
+import { SubjectsService } from '../../Services/subjects.service';
 
 @Component({
   selector: 'app-landing-page',

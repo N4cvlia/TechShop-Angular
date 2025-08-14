@@ -1,7 +1,7 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { SubjectsService } from './subjects.service';
+import { SubjectsService } from './Services/subjects.service';
 import { finalize } from 'rxjs';
 
 export const interInterceptor: HttpInterceptorFn = (req, next) => {

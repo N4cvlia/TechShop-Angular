@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { ApiService } from '../api.service';
+import { ApiService } from '../../Services/api.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCheckCircle, faChevronLeft, faChevronRight, faCircleXmark, faStar } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
-import { SubjectsService } from '../subjects.service';
+import { SubjectsService } from '../../Services/subjects.service';
 import { CookieService } from 'ngx-cookie-service';
+import { skip, switchMap, of } from 'rxjs';
 
 @Component({
   selector: 'app-product-page',
@@ -13,11 +14,7 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.css'
 })
-export class ProductPageComponent {
-  constructor(private detailData: ActivatedRoute, private api : ApiService, private subjects: SubjectsService, private cookie: CookieService){
-    this.getId()
-    this.subjects.renewCartId();
-  }
+export class ProductPageComponent implements OnInit {
   faStar = faStar
   faChevronRight = faChevronRight
   faChevronLeft = faChevronLeft
@@ -27,16 +24,36 @@ export class ProductPageComponent {
   public info : any = {
     title: ""
   }
-
   public rating: any;
-
   public images: any;
-  
   public imageNum: number = 0;
-
   public quantityNum: number = 1;
-
   public ratingNum: any;
+  public id: any;
+  public productData: any;
+  
+  constructor(private detailData: ActivatedRoute, private api : ApiService, private subjects: SubjectsService, private cookie: CookieService){
+    this.subjects.renewCartId();
+  }
+  ngOnInit(): void {
+    window.scrollTo(0, 0);
+
+    this.productData = this.detailData.snapshot.data["productDetails"];
+    this.alocateInfo(this.productData);
+
+    this.detailData.queryParamMap.pipe(
+      skip(1),
+      switchMap((params: any) => {
+        const id = params.get('id');
+        if(id){
+          return this.api.getProductById(id);
+        }
+        return of(null);
+      })
+    ).subscribe((data: any) => {
+      this.alocateInfo(data);
+    })
+  }
 
   quantityNumIncrease() {
     if(this.info.stock > this.quantityNum) {
@@ -61,22 +78,12 @@ export class ProductPageComponent {
     }
   }
 
-  getId() {
-    this.detailData.queryParams.subscribe((data: any) => {
-      this.getDetailsById(Object.values(data).join(""))
-    })
-  }
-
-  getDetailsById(id: any) {
-    this.api.getProductById(id).subscribe({
-      next: (data:any) => {
-        this.info = data
-        this.rating = Math.floor(this.info.rating *10)/10
-        this.images = data.images
-        this.images.unshift(data.thumbnail)
-        this.ratingNum = (Math.floor(this.info.rating *10)/10) * 15 + (Math.floor(this.info.rating *10)/10) * 2.7
-      }
-    })
+  alocateInfo(info: any) {
+    this.info = info
+    this.rating = Math.floor(this.info.rating *10)/10
+    this.images = info.images
+    this.images.unshift(info.thumbnail)
+    this.ratingNum = (Math.floor(this.info.rating *10)/10) * 15 + (Math.floor(this.info.rating *10)/10) * 2.7
   }
   
 

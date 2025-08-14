@@ -179,7 +179,7 @@
               </button>
               <div id="pagination-middle">
                 @for (item of paginNumQuantity; track $index) {
-                    <button id="page-button"  (click)="getAllProducts(paginNumQuantity[$index])" [classList]="paginNumQuantity[$index] == paginNum ? 'active' : ''">{{paginNumQuantity[$index]}}</button>
+                    <button id="page-button"  (click)=" scrollToTop();getAllProducts(paginNumQuantity[$index])" [classList]="paginNumQuantity[$index] == paginNum ? 'active' : ''">{{paginNumQuantity[$index]}}</button>
                 }
               </div>
               <button id="arrow-button2" (click)="paginIncrease()">

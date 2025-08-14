@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { ApiService } from '../api.service';
+import { ApiService } from '../../Services/api.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({

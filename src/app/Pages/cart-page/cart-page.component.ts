@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-import { ApiService } from '../api.service';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../Services/api.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { SubjectsService } from '../subjects.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SubjectsService } from '../../Services/subjects.service';
 
 @Component({
   selector: 'app-cart-page',
@@ -13,15 +13,7 @@ import { SubjectsService } from '../subjects.service';
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.css'
 })
-export class CartPageComponent {
-  constructor(private api: ApiService, private routing: Router, private subjects: SubjectsService) {
-    this.getCart()
-    this.subjects.renewCartId();
-    this.subjects.cartAvail.next(true)
-    this.subjects.renewCart();
-    
-  }
-
+export class CartPageComponent implements OnInit {
   public id : any;
 
   public thumbnails: any[] = []
@@ -40,7 +32,20 @@ export class CartPageComponent {
 
   public quantitys: any[] = []
 
+  public retrievedData: any;
+
   faStar = faStar
+
+  constructor(private api: ApiService, private routing: Router, private subjects: SubjectsService, private actR: ActivatedRoute) {
+    this.subjects.renewCartId();
+    this.subjects.cartAvail.next(true)
+    this.subjects.renewCart();
+    
+  }
+  ngOnInit(): void {
+    this.retrievedData = this.actR.snapshot.data["cartProducts"];
+    this.allocateData(this.retrievedData);
+  }
 
   rating(item: any) {
     return Math.floor(item *10)/10
@@ -56,7 +61,13 @@ export class CartPageComponent {
         this.subjects.renewCart()
       }
     })
-
+  }
+  allocateData(data: any) {
+    this.id = data.products.map((data:any) => data.productId)
+    this.products = data.products
+    this.productss = data
+    this.getImages(this.id, data)
+    this.subjects.renewCart()
   }
   getImages(data:any, quantity:any) {
     for(let item of data){

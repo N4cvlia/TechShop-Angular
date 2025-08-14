@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
-import { SubjectsService } from './subjects.service';
-import { LoaderComponent } from './loader/loader.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import { SubjectsService } from './Services/subjects.service';
+import { LoaderComponent } from './Components/loader/loader.component';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({

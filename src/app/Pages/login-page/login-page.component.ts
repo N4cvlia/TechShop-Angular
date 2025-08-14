@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ApiService } from '../api.service';
+import { ApiService } from '../../Services/api.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router, RouterModule } from '@angular/router';
-import { SubjectsService } from '../subjects.service';
+import { SubjectsService } from '../../Services/subjects.service';
 
 @Component({
   selector: 'app-login-page',

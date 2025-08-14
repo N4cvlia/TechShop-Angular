@@ -10,6 +10,7 @@ export class SubjectsService {
 
   constructor(private api: ApiService, private cookie: CookieService) {
     this.getCart()
+    this.getPfp()
    }
   
   
@@ -34,8 +35,20 @@ export class SubjectsService {
         })
       }
     }
+    
+    
   }
 
+
+  getPfp() {
+    if(this.cookie.get("User")){
+      this.api.getAuth().subscribe( (data: any) => {
+        this.authInfo.next(data)
+      }
+      )
+    }
+    
+  }
   renewCart() {
     if(this.cartAvail.value) {
       if(this.cookie.get("User")) {

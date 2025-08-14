@@ -1,7 +1,7 @@
-import { afterNextRender, Component } from '@angular/core';
-import { ApiService } from '../api.service';
-import { Router } from '@angular/router';
-import { SubjectsService } from '../subjects.service';
+import { afterNextRender, Component, OnInit } from '@angular/core';
+import { ApiService } from '../../Services/api.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SubjectsService } from '../../Services/subjects.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LabelType, NgxSliderModule, Options } from '@angular-slider/ngx-slider'
@@ -13,17 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './shop-page.component.html',
   styleUrl: './shop-page.component.css'
 })
-export class ShopPageComponent{
-  constructor(private api: ApiService, private routing: Router, private subjects: SubjectsService, private cookie: CookieService){
-    this.getAllProducts(1)
-    this.getAllCategorys()
-    this.getAllBrands()
-    this.subjects.renewCart()
-    this.subjects.renewCartId()
-    this.getCartAvail()
-    this.subjects.renewPfp()
-  }
-  
+export class ShopPageComponent implements OnInit{
   public allProducts: any;
   public cartAvail: any;
   public isChecked: any = 'checked';
@@ -49,6 +39,18 @@ export class ShopPageComponent{
       boolean: false
     }
   ]
+  constructor(private api: ApiService, private routing: Router, private subjects: SubjectsService, private cookie: CookieService, private actR: ActivatedRoute){
+    this.getAllCategorys()
+    this.getAllBrands()
+    this.subjects.renewCart()
+    this.subjects.renewCartId()
+    this.getCartAvail()
+    this.subjects.renewPfp()
+  }
+  ngOnInit(): void {
+    this.allProductsData = this.actR.snapshot.data["allProducts"]
+    this.allocateData(this.allProductsData)
+  }
 
   getCartAvail() {
     this.subjects.cartAvail.subscribe((data:any) => {
@@ -76,8 +78,20 @@ export class ShopPageComponent{
     })
   }
 
+  allocateData(data: any) {
+    this.allProducts = data.products
+        this.allProductsData = data
+        this.paginNumQuantity = []
+        this.paginNum = 1
+        this.pagination = true
+        for(let i = 1;i <= Math.ceil(this.allProductsData.total/this.allProductsData.limit);i++) {
+          this.paginNumQuantity.push(i)
+          
+        }
+  }
+
   goToDetails(data: any) {
-    this.routing.navigate(["/Details"], {queryParams: data._id})
+    this.routing.navigate(["/Details"], {queryParams: {id: data._id}})
   }
 
   addToCart(id:any) {
@@ -119,15 +133,21 @@ export class ShopPageComponent{
   paginIncrease() {
     let paginNumQuantity = Math.ceil(this.allProductsData.total/this.allProductsData.limit)
     if(paginNumQuantity > this.paginNum){
+      window.scrollTo(0, 0)
       this.paginNum++
       this.api.getAllProducts(this.paginNum).subscribe((data: any) => this.allProducts = data.products)
     }
   }
   paginDecrease() {
     if(this.paginNum > 1) {
+      window.scrollTo(0, 0)
       this.paginNum--
       this.api.getAllProducts(this.paginNum).subscribe((data: any) => this.allProducts = data.products)
     }
+  }
+
+  scrollToTop() {
+    window.scrollTo(0, 0)
   }
 
   getAllCategorys() {
