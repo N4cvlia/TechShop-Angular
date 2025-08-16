@@ -1,0 +1,54 @@
+<div class="profile-container">
+    <div class="profile-header">
+      <div class="avatar-wrapper">
+        <img [src]="authInfo.avatar" alt="Avatar" class="avatar">
+        <span *ngIf="authInfo.verified" class="verified-badge">✔ Verified</span>
+      </div>
+      <h1>{{ authInfo.firstName }} {{ authInfo.lastName }}</h1>
+      <button class="logout-btn" (click)="logOut()">Log Out</button>
+    </div>
+    <div class="profile-details">
+      <h2>Profile Information</h2>
+  
+      <div class="info-card">
+        <span class="label">Email</span>
+        <span class="value"><a href="mailto:{{ authInfo.email }}">{{ authInfo.email }}</a></span>
+      </div>
+  
+      <div class="info-card">
+        <span class="label">Phone</span>
+        <span class="value"><a href="tel:{{ authInfo.phone }}">{{ authInfo.phone }}</a></span>
+      </div>
+  
+      <div class="info-card">
+        <span class="label">Age</span>
+        <span class="value">{{ authInfo.age }}</span>
+      </div>
+  
+      <div class="info-card">
+        <span class="label">Gender</span>
+        <span class="value">{{ authInfo.gender }}</span>
+      </div>
+  
+      <div class="info-card">
+        <span class="label">Address</span>
+        <span class="value">{{ authInfo.address }}</span>
+      </div>
+  
+      <div class="info-card">
+        <span class="label">Zip Code</span>
+        <span class="value">{{ authInfo.zipcode }}</span>
+      </div>
+  
+      <div class="info-card">
+        <span class="label">Cart ID</span>
+        <span class="value">{{ authInfo.cartID }}</span>
+      </div>
+  
+      <div class="info-card">
+        <span class="label">Chat IDs</span>
+        <span class="value">{{ authInfo.chatIds.length ? authInfo.chatIds.join(', ') : 'None' }}</span>
+      </div>
+  
+    </div>
+  </div>

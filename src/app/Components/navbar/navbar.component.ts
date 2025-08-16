@@ -15,26 +15,30 @@ import { ApiService } from '../../Services/api.service';
 })
 export class NavbarComponent implements OnInit{
   @ViewChild('search') search! : ElementRef;
+  @ViewChild("profile") profile! : ElementRef;
   private sub!: Subscription;
+  private sub2!: Subscription;
 
   public cartNum: number = 0;
-  public auth: string = "https://cdn.pfps.gg/pfps/2301-default-2.png";
+  public auth: string = "";
   public username: string = "";
   public authAvail: boolean = false;
   public searchInput: any = ""
   public searchProducts: any;
   public SearchVisib: any = "none";
+  public profileVisib: boolean = false;
   public productsData: any;
 
   constructor(private subjects: SubjectsService, private cookie: CookieService, private routing: Router, private api: ApiService, private cdr: ChangeDetectorRef){
     this.getCartNum()
-    
-    // this.subjects.getPfp();
   }
   ngOnInit(): void {
     this.getAuth()
     this.sub = this.subjects.shopaction$.subscribe(() => {
       this.getCartNum();
+    })
+    this.sub2 = this.subjects.loginStatus$.subscribe(() => {
+      this.getAuth()
     })
     this.getallProducts();
   }
@@ -44,6 +48,18 @@ export class NavbarComponent implements OnInit{
     if(!this.search.nativeElement.contains(event.target)){
       this.SearchVisib = "none"
     }
+    if(!this.profile.nativeElement.contains(event.target)) {
+      this.profileVisib = false
+    }
+  }
+
+  profileDropdown(event: Event) {
+    event.stopPropagation();
+    this.profileVisib = !this.profileVisib
+  }
+
+  goToProfile() {
+    this.routing.navigate(["Profile"])
   }
 
   getallProducts(): void {
@@ -58,7 +74,7 @@ export class NavbarComponent implements OnInit{
   }
   getCartNum() {
     this.subjects.cartNum.subscribe((data:any) => {this.cartNum = data})
-    this.subjects.authInfos.subscribe((data:any) => this.authAvail = data)
+    // this.subjects.authInfos.subscribe((data:any) => this.authAvail = data)
   }
 
   searchUp() {
@@ -78,6 +94,10 @@ export class NavbarComponent implements OnInit{
           }
         }
       )
+    }else {
+      this.username = "";
+      this.auth = "";
+      this.authAvail = false;
     }
   }
 
@@ -98,5 +118,16 @@ export class NavbarComponent implements OnInit{
     this.routing.navigate(["/Details"], {queryParams: {id: data._id}})
     this.searchInput = ""
     this.SearchVisib = "none";
+  }
+
+  logOut(): void {
+    this.cookie.set("User", "")
+    this.getAuth()
+    alert("Succesfully Logged Out!")
+    this.profileVisib = false;
+    this.cartNum = 0;
+    setTimeout(() => {
+      this.routing.navigate([""])
+    }, 1000);
   }
 }

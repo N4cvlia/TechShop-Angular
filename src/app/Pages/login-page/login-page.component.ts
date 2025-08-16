@@ -33,6 +33,7 @@ export class LoginPageComponent {
         this.succ = true
         this.subjects.getCart()
         this.subjects.renewPfp()
+        this.subjects.notifyLogin();
       },
       error: (data:any) => {
         console.log(data)

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { FooterComponent } from './Components/footer/footer.component';
@@ -12,15 +12,17 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'AngularShopProject';
 
+  public loading: boolean = false
+
   constructor(private subjects: SubjectsService, public cookies : CookieService) {
-    this.loaderLogic()
     this.logOutLogic()
   }
-
-  public loading: boolean = false
+  ngOnInit(): void {
+    this.loaderLogic()
+  }
 
   logOutLogic() {
     setInterval(() => {

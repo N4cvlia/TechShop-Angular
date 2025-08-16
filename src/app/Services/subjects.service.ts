@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { ApiService } from './api.service';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -7,12 +7,16 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class SubjectsService {
+  private loginStatusSource = new Subject<void>();
+  loginStatus$ = this.loginStatusSource.asObservable();
 
   constructor(private api: ApiService, private cookie: CookieService) {
     this.getCart()
-    this.getPfp()
    }
-  
+
+  notifyLogin() {
+    this.loginStatusSource.next()
+  }
   
   getCart() {
     if(this.cartAvail.value) {
@@ -39,16 +43,6 @@ export class SubjectsService {
     
   }
 
-
-  getPfp() {
-    if(this.cookie.get("User")){
-      this.api.getAuth().subscribe( (data: any) => {
-        this.authInfo.next(data)
-      }
-      )
-    }
-    
-  }
   renewCart() {
     if(this.cartAvail.value) {
       if(this.cookie.get("User")) {
@@ -57,6 +51,8 @@ export class SubjectsService {
             this.cartNum.next(data.products.length)
           }
       })
+    }else {
+      this.cartNum.next(0)
     }
   }
   }

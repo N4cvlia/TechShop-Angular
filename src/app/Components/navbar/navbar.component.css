@@ -28,16 +28,18 @@
     align-items: center;
     flex-direction: column;
     position: absolute;
-    margin-top: 195px;
-    margin-left: -30px;
+    margin-top: 210px;
+    right: 10px;
     border: 0px solid #e5e7eb;
     background-color: #f9f9f9;
     border-radius: 12px;
     box-shadow: 
     0 0 0 1px rgba(255, 255, 255, 0.05) inset,
     0 1px 2px rgba(0, 0, 0, 0.05);
-    max-height: 0px;
+    /* max-height: 0px; */
     overflow: hidden;
+    transform: scale(0);
+    transition: all 0.25s ease;
 }
 .viewProfile, 
 .logOut {

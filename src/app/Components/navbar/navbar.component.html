@@ -24,11 +24,13 @@
         </div>
     </div>
     <div class="nav-actions">
-            <button class="nav-button" *ngIf="authAvail">
+        @if(authAvail) {
+            <button class="nav-button" (click)="profileDropdown($event)">
                 <button id="customUserMenuBtn" class="custom_user_menu_btn_v1">
-                    <img [src]="auth" alt="avatar" id="loginImage" referrerpolicy="no-referrer" class="user-icon" style="border-radius: 50%; height: 30px; width: 30px;">
+                    <img [src]="auth || 'https://cdn.pfps.gg/pfps/2301-default-2.png'" alt="avatar" id="loginImage" referrerpolicy="no-referrer" class="user-icon" style="border-radius: 50%; height: 30px; width: 30px;">
                 </button>
             </button>
+        }
             <button class="nav-button" routerLink="/Login" id="loginIcon" *ngIf="!authAvail">
                 <svg class="user-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -36,16 +38,16 @@
                 </svg>
                 <span style="font-family: Avenir;">Log In</span>
             </button>
-            <div class="profileDropdown">
+            <div class="profileDropdown" [style.transform]="profileVisib ? 'scale(1)' : 'scale(0)'" #profile>
                 <div class="profile">
-                    <img [src]="auth" style="border-radius: 50%; height: 30px; width: 30px;" class="Pfp">
+                    <img [src]="auth || 'https://cdn.pfps.gg/pfps/2301-default-2.png'" style="border-radius: 50%; height: 30px; width: 30px;" class="Pfp">
                     <span>{{username}}</span>
                 </div>
-                <button class="viewProfile" style="gap: 8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <button (click)="goToProfile()" class="viewProfile" style="gap: 8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg> View Profile</button>
-                <button class="logOut" style="gap: 8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <button (click)="logOut()" class="logOut" style="gap: 8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15 3h6v18h-6M10 17l5-5-5-5M3 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg> Log Out</button>
             </div>
