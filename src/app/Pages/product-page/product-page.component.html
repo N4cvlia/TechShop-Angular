@@ -8,7 +8,7 @@
 <div class="product-wrapper">
     <div class="product-container">
         <div class="product-image-section">
-            <div class="product-image-gradient"><img [src]="images[imageNum]" alt="" id="productImg" referrerpolicy="no-referrer"></div>
+            <div class="product-image-gradient"><img [src]="images[imageNum]" alt="" id="productImg" referrerpolicy="no-referrer" (error)="images[imageNum] = 'https://www.emh.co.uk/img/emh-no-image-available.png'"></div>
             <div class="image-navigation">
                 <button class="nav-arrow nav-left" (click)="imageNumDecreae()">
                     <fa-icon [icon]="faChevronLeft"></fa-icon>

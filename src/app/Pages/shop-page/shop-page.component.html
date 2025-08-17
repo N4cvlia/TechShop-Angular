@@ -150,7 +150,7 @@
             @for (datas of allProducts; track $index) {
                 <div class="card">
                     <div class="image-container" (click)="goToDetails(datas)">
-                      <img [src]="datas.thumbnail" alt="Modern Laptop" referrerpolicy="no-referrer">
+                      <img [src]="datas.thumbnail" alt="Modern Laptop" referrerpolicy="no-referrer" (error)="datas.thumbnail ='https://www.emh.co.uk/img/emh-no-image-available.png'">
                     </div>
                     <div class="content">
                       <div class="name" (click)="goToDetails(datas)">{{datas.title}}</div>
