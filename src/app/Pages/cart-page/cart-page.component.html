@@ -17,7 +17,7 @@
                     <td>
                         <div class="sc_product">
                             <div class="sc_product_image">
-                                <img [src]="item.thumbnail" alt="">
+                                <img [src]="item.thumbnail" alt="" (error)="item.thumbnail = 'https://static.thenounproject.com/png/1554489-200.png'">
                             </div>
                             <div class="sc_product_details">
                                 <h2>{{item.title}}</h2>

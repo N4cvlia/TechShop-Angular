@@ -13,7 +13,7 @@ import { SubjectsService } from '../../Services/subjects.service';
 export class ProfilePageComponent implements OnInit {
   public authInfo: any;
   constructor(private actR: ActivatedRoute, private cookies: CookieService, private routing: Router, private subjects: SubjectsService) {
-
+    window.scrollTo(0, 0);
   }
   ngOnInit(): void {
     this.authInfo = this.actR.snapshot.data["authInfo"];

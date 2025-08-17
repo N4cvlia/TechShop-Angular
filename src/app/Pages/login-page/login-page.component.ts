@@ -12,7 +12,9 @@ import { SubjectsService } from '../../Services/subjects.service';
   styleUrl: './login-page.component.css'
 })
 export class LoginPageComponent {
-  constructor(private api: ApiService, private cookie: CookieService, public routing: Router, private subjects: SubjectsService) {}
+  constructor(private api: ApiService, private cookie: CookieService, public routing: Router, private subjects: SubjectsService) {
+    window.scrollTo(0, 0);
+  }
 
   public loginForm: FormGroup = new FormGroup({
     email: new FormControl<string>(""),

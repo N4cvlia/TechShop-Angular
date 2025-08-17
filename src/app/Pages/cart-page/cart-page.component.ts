@@ -40,7 +40,7 @@ export class CartPageComponent implements OnInit {
     this.subjects.renewCartId();
     this.subjects.cartAvail.next(true)
     this.subjects.renewCart();
-    
+    window.scrollTo(0,0)
   }
   ngOnInit(): void {
     this.retrievedData = this.actR.snapshot.data["cartProducts"];

@@ -11,7 +11,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class RegisterPageComponent {
   constructor(private api: ApiService, private routing: Router) {
-
+    window.scrollTo(0, 0);
   }
 
   public registerForm: FormGroup = new FormGroup({
