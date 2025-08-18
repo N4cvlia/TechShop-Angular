@@ -85,6 +85,9 @@
     font-weight: 500;
     font-size: 20px;
 }
+.register-form-group input.ng-invalid.ng-touched{
+    border: 2px solid #dc3545;
+}
 .register-form-group input,
 .register-form-group select {
     width: 100%;
@@ -92,6 +95,12 @@
     border: 1px solid #ddd;
     border-radius: 4px;
 }
+.error-text {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 4px;
+    font-family: Avenir;
+  }
 @media (max-width: 480px) {
     .register-container {
         width: 90%;

@@ -6,46 +6,142 @@
                 <div class="register-form-group">
                     <label for="firstName">First Name</label>
                     <input type="text" id="firstName" formControlName="firstName" placeholder="Enter first name" required>
+                    <div *ngIf="registerForm.get('firstName')?.touched && registerForm.get('firstName')?.invalid">
+                        <small class="error-text" *ngIf="registerForm.get('firstName')?.errors?.['required']">
+                            First name is required.
+                        </small>
+                        <small class="error-text" *ngIf="registerForm.get('firstName')?.errors?.['minlength']">
+                            First name must be at least 2 characters.
+                        </small>
+                        <small class="error-text" *ngIf="registerForm.get('firstName')?.errors?.['pattern']">
+                            Only letters are allowed.
+                        </small>
+                    </div>
                 </div>
                 <div class="register-form-group">
                     <label for="lastName">Last Name</label>
                     <input type="text" id="lastName" formControlName="lastName" placeholder="Enter last name" required>
+                    <div *ngIf="registerForm.get('lastName')?.touched && registerForm.get('lastName')?.invalid">
+                        <small class="error-text" *ngIf="registerForm.get('lastName')?.errors?.['required']">
+                            Last name is required.
+                        </small>
+                        <small class="error-text" *ngIf="registerForm.get('lastName')?.errors?.['minlength']">
+                            Last name must be at least 2 characters.
+                        </small>
+                        <small class="error-text" *ngIf="registerForm.get('lastName')?.errors?.['pattern']">
+                            Only letters are allowed.
+                        </small>
+                    </div>
                 </div>
             </div>
 
             <div class="register-form-group">
                 <label for="age">Age</label>
                 <input type="number" id="age" formControlName="age" placeholder="Enter your age" required>
+                <div *ngIf="registerForm.get('age')?.touched && registerForm.get('age')?.invalid">
+                    <small class="error-text" *ngIf="registerForm.get('age')?.errors?.['required']">
+                        Age is required.
+                    </small>
+                    <small class="error-text" *ngIf="registerForm.get('age')?.errors?.['min']">
+                        Must be at least 13 years old.
+                    </small>
+                    <small class="error-text" *ngIf="registerForm.get('age')?.errors?.['max']">
+                        Can't be older than 120 years old.
+                    </small>
+                </div>
             </div>
 
             <div class="register-form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" formControlName="email" placeholder="Enter your email" required>
+                <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+                    <small class="error-text" *ngIf="registerForm.get('email')?.errors?.['required']">
+                        Email is required.
+                    </small>
+                    <small class="error-text" *ngIf="registerForm.get('email')?.errors?.['email']">
+                        Email is invalid.
+                    </small>
+                </div>
             </div>
 
             <div class="register-form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" formControlName="password" placeholder="Create a password" required>
+                <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+                    <small class="error-text" *ngIf="registerForm.get('password')?.errors?.['required']">
+                        Password is required.
+                    </small>
+                    <small class="error-text" *ngIf="registerForm.get('password')?.errors?.['minlength']">
+                        Must be at least 8 characters.
+                    </small>
+                    <small class="error-text" *ngIf="registerForm.get('password')?.errors?.['maxlength']">
+                        Can't be longer than 64 characters.
+                    </small>
+                    <small class="error-text" *ngIf="registerForm.get('password')?.errors?.['pattern']">
+                        Must include uppercase, lowercase, number, and special character.
+                    </small>
+                </div>
             </div>
 
             <div class="register-form-group">
                 <label for="address">Address</label>
                 <input type="text" id="address" formControlName="address" placeholder="Enter your address" required>
+                <div *ngIf="registerForm.get('address')?.touched && registerForm.get('address')?.invalid">
+                    <small class="error-text" *ngIf="registerForm.get('address')?.errors?.['required']">
+                        Address is required.
+                    </small>
+                    <small class="error-text" *ngIf="registerForm.get('address')?.errors?.['minlength']">
+                        Must be at least 5 characters.
+                    </small>
+                    <small class="error-text" *ngIf="registerForm.get('address')?.errors?.['maxlength']">
+                        Can't be longer than 200 characters.
+                    </small>
+                </div>
             </div>
 
             <div class="register-form-group">
                 <label for="phone">Phone Number</label>
                 <input type="tel" id="phone" formControlName="phone" value="+995 " placeholder="Enter your phone number" required>
+                <div *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid">
+                    <small class="error-text" *ngIf="registerForm.get('phone')?.errors?.['required']">
+                        Phone is required.
+                    </small>
+                    <small class="error-text" *ngIf="registerForm.get('phone')?.errors?.['pattern']">
+                        Please enter a valid phone number (e.g. +9955XXXXXXX).
+                    </small>
+                </div>
             </div>
 
             <div class="register-form-group">
                 <label for="zipcode">Zip Code</label>
                 <input type="text" id="zipcode" formControlName="zipcode" placeholder="Enter your zip code" required>
+                <div *ngIf="registerForm.get('zipcode')?.touched && registerForm.get('zipcode')?.invalid">
+                    <small class="error-text" *ngIf="registerForm.get('zipcode')?.errors?.['required']">
+                        Zip code is required.
+                    </small>
+                    <small class="error-text" *ngIf="registerForm.get('zipcode')?.errors?.['pattern']">
+                        Zip code must contain only numbers.
+                    </small>
+                    <small class="error-text" *ngIf="registerForm.get('zipcode')?.errors?.['minlength']">
+                        Must be at least 4 digits.
+                    </small>
+                    <small class="error-text" *ngIf="registerForm.get('zipcode')?.errors?.['maxlength']">
+                        Can't be over 4 digits.
+                    </small>
+                </div>
             </div>
 
             <div class="register-form-group">
                 <label for="avatar">Profile Picture</label>
                 <input type="text" id="avatar" formControlName="avatar" placeholder="Enter image link" required>
+                <div *ngIf="registerForm.get('avatar')?.touched && registerForm.get('avatar')?.invalid">
+                    <small class="error-text" *ngIf="registerForm.get('avatar')?.errors?.['required']">
+                        Avatar is required.
+                    </small>
+                    <small class="error-text" *ngIf="registerForm.get('avatar')?.errors?.['pattern']">
+                        Please enter a valid image link (jpg, png, gif, webp).
+                    </small>
+                </div>
             </div>
 
             <div class="register-form-group">
@@ -56,6 +152,11 @@
                     <option value="FEMALE">Female</option>
                     <option value="OTHER">Other</option>
                 </select>
+                <div *ngIf="registerForm.get('gender')?.touched && registerForm.get('gender')?.invalid">
+                    <small class="error-text" *ngIf="registerForm.get('gender')?.errors?.['required']">
+                        Gender is required.
+                    </small>
+                </div>
             </div>
 
             <button type="submit" class="register-submit-btn">Register</button>
