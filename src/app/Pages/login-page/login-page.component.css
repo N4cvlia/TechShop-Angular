@@ -66,9 +66,12 @@
 }
 .eror {
     margin: 10px auto;
-    display: flex;
+    color: #dc3545;
+    font-family: Avenir;
+    font-weight: 600;   
 }
 .succ {
+    margin: 10px auto;
     color: green;
     font-family: Avenir;
     font-size: 20px;
@@ -76,6 +79,12 @@
     justify-content: center;
     font-weight: 500;
 }
+.error-text {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 4px;
+    font-family: Avenir;
+  }
 @media (max-width: 480px) {
     .login-container {
         width: 90%;

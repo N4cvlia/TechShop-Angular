@@ -4,18 +4,32 @@
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" id="email" formControlName="email" placeholder="Bendover@gmail.com" required>
+            <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                <small class="error-text" *ngIf="loginForm.get('email')?.errors?.['required']">
+                    Email is required.
+                </small>
+                <small class="error-text" *ngIf="loginForm.get('email')?.errors?.['email']">
+                    Email is invalid.
+                </small>
+            </div>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
             <input type="password" id="password" formControlName="password" placeholder="Enter your password" required>
+            <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                <small class="error-text" *ngIf="loginForm.get('password')?.errors?.['required']">
+                    Password is required.
+                </small>
+            </div>
         </div>
         <button type="submit" class="login-btn">Log in</button>
+        @if(succ) {
+            <div class="succ"><span>Succesfully logged in!</span></div>
+        }@else if (err) {
+            <span class="eror">Invalid email or password.</span>
+        }
         <div class="form-footer">
             <a routerLink="/Register">Create an account</a>
         </div>
-        <div class="eror"><div id="errorss"></div></div>
-        @if(succ) {
-            <div class="succ"><span>Succesfully logged in!</span></div>
-        }
     </form>
 </div>
