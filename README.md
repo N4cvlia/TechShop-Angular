@@ -27,13 +27,15 @@ This project demonstrates real-world Angular practices such as **lazy loading, r
 
 ---
 
-## 🔎 Overview
+<h2 id="overview">🔎 Overview</h2>
+
 **TechShop-Angular** is a scalable Angular front-end project that replicates the flow of a tech e-commerce store.  
 It is intended both as a **learning project** to practice professional Angular patterns and as a **portfolio showcase** for real-world web app development.  
 
 ---
 
-## ✨ Features
+<h2 id="features">✨ Features</h2>
+
 - **API-powered product catalog** – All product, cart, and user data are fetched from a REST API
 - **Product Catalog** with dynamic filtering and sorting  
 - **Product Details** preloaded with **Angular Route Resolvers**  
@@ -45,7 +47,8 @@ It is intended both as a **learning project** to practice professional Angular p
 
 ---
 
-## 🛠 Tech Stack
+<h2 id="tech-stack">🛠 Tech Stack</h2>
+
 - **Angular 17** (framework)  
 - **TypeScript 5** (language)  
 - **RxJS 7** (reactive programming)  
@@ -55,7 +58,7 @@ It is intended both as a **learning project** to practice professional Angular p
 
 ---
 
-## 🚀 Getting Started
+<h2 id="getting-started">🚀 Getting Started</h2>
 
 ### Prerequisites
 - **Node.js** (v16 or higher)  
@@ -72,11 +75,14 @@ npm install
 ### Running Locally
 npm start
 
-## 🧪 Testing
+<h2 id="testing">🧪 Testing</h2>
+
 ng test
 (Currently minimal tests — future work includes full unit/E2E coverage.)
 
-## 📂 Project Structure
+<h2 id="project-structure">📂 Project Structure</h2>
+
+```bash
 src/
 ├── app/
 │   ├── Components/      # Feature modules (Navbar, Footer, Loader)
@@ -85,10 +91,11 @@ src/
 │   ├── Resolver/        # Site resolvers
 │   ├── Services/        # API and state services
 │   └── app-routes.ts
-├── assets/                # Images, logos, static files
-└── styles/                # Global SCSS/CSS
+├── assets/              # Images, logos, static files
+└── styles/              # Global SCSS/CSS
+```
+<h2 id="contributing">🤝 Contributing</h2>
 
-## 🤝 Contributing
 Contributions are welcome!
 
 Fork the project
@@ -100,16 +107,20 @@ git commit -m "feat: add my feature"
 
 Push and open a Pull Request
 
-## 📜 License
+<h2 id="license">📜 License</h2>
+
 This project is licensed under the MIT License.
 See the LICENSE file for more details.
 
-## 🎨 Credits
+<h2 id="credits">🎨 Credits</h2>
+
 Logo Design: created by graphic designer Giorgi Goderdzishvili
+
 Project created and maintained by Nikolozi Natsvlishvili
 
-## 📬 Contact
+<h2 id="contact">📬 Contact</h2>
+
 👤 Nikolozi Natsvlishvili
-GitHub: N4cvlia
-Email: kaxa487@gmail.com
-LinkedIn: http://linkedin.com/in/nikolozi-natsvlishvili-741363320/
+- GitHub: N4cvlia
+- Email: kaxa487@gmail.com
+- LinkedIn: http://linkedin.com/in/nikolozi-natsvlishvili-741363320/
