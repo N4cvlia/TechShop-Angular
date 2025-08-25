@@ -114,7 +114,7 @@ See the LICENSE file for more details.
 
 <h2 id="credits">🎨 Credits</h2>
 
-Logo Design: created by graphic designer Giorgi Goderdzishvili
+Logo Design: created by graphic designer [Giorgi Goderdzishvili](https://www.behance.net/giorgigoderdz?fbclid=PAQ0xDSwMZaQJleHRuA2FlbQIxMAABp-YhgeNvJP6XsPbp8jliP8-56Q_d7ZFqdEAk8FAeky5gzG4VDyMfpo9_GugW_aem_K0l3EUQ6YkF4mGIoHYtd5w)
 
 Project created and maintained by Nikolozi Natsvlishvili
 
