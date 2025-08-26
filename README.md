@@ -7,7 +7,7 @@
 
 A **responsive e-commerce web application** built with **Angular**, designed to simulate a modern tech store.  
 This project demonstrates real-world Angular practices such as **lazy loading, route resolvers,REST API and reactive programming with RxJS**.  
-
+ 
 ---
 
 ## 📑 Table of Contents
