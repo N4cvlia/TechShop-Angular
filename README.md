@@ -1,59 +1,126 @@
-# AngularShopProject
+# 🛍️ TechShop-Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+![Angular](https://img.shields.io/badge/Angular-17-red)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![RxJS](https://img.shields.io/badge/RxJS-7-purple)
 
-## Development server
+A **responsive e-commerce web application** built with **Angular**, designed to simulate a modern tech store.  
+This project demonstrates real-world Angular practices such as **lazy loading, route resolvers,REST API and reactive programming with RxJS**.  
+ 
+---
 
-To start a local development server, run:
+## 📑 Table of Contents
+- [Overview](#overview)  
+- [Features](#features)  
+- [Tech Stack](#tech-stack)   
+- [Getting Started](#getting-started)  
+  - [Prerequisites](#prerequisites)  
+  - [Installation](#installation)  
+  - [Running Locally](#running-locally)  
+- [Testing](#testing)  
+- [Project Structure](#project-structure)  
+- [Contributing](#contributing)  
+- [License](#license)  
+- [Credits](#credits)  
+- [Contact](#contact)  
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+<h2 id="overview">🔎 Overview</h2>
 
-## Code scaffolding
+**TechShop-Angular** is a scalable Angular front-end project that replicates the flow of a tech e-commerce store.  
+It is intended both as a **learning project** to practice professional Angular patterns and as a **portfolio showcase** for real-world web app development.  
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+<h2 id="features">✨ Features</h2>
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **API-powered product catalog** – All product, cart, and user data are fetched from a REST API
+- **Product Catalog** with dynamic filtering and sorting  
+- **Product Details** preloaded with **Angular Route Resolvers**  
+- **Lazy Loading** for optimized performance  
+- **Reactive Programming with RxJS** for data streams and async handling  
+- **Shopping Cart** with add/remove functionality and live quantity updates  
+- **Authentication Flow** (login/logout simulation)  
+- **Responsive Design** (mobile-first and desktop support)  
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+<h2 id="tech-stack">🛠 Tech Stack</h2>
 
-To build the project run:
+- **Angular 17** (framework)  
+- **TypeScript 5** (language)  
+- **RxJS 7** (reactive programming)  
+- **Angular Router** (lazy loading + resolvers)
+- **REST API Integration** (mock data)
+- **SCSS / CSS3** (styling)  
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+<h2 id="getting-started">🚀 Getting Started</h2>
 
-## Running unit tests
+### Prerequisites
+- **Node.js** (v16 or higher)  
+- **npm** (comes with Node.js)  
+- (Optional) Angular CLI:
+  ```bash
+  npm install -g @angular/cli
+  
+### Installation
+git clone https://github.com/N4cvlia/TechShop-Angular.git
+cd TechShop-Angular
+npm install
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Running Locally
+npm start
 
-```bash
+<h2 id="testing">🧪 Testing</h2>
+
 ng test
-```
+(Currently minimal tests — future work includes full unit/E2E coverage.)
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+<h2 id="project-structure">📂 Project Structure</h2>
 
 ```bash
-ng e2e
+src/
+├── app/
+│   ├── Components/      # Feature modules (Navbar, Footer, Loader)
+│   ├── Guards/          # Link Guards and CanActivates
+│   ├── Pages/           # Shop Pages
+│   ├── Resolver/        # Site resolvers
+│   ├── Services/        # API and state services
+│   └── app-routes.ts
+├── assets/              # Images, logos, static files
+└── styles/              # Global SCSS/CSS
 ```
+<h2 id="contributing">🤝 Contributing</h2>
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Contributions are welcome!
 
-## Additional Resources
+Fork the project
+Create a feature branch:
+git checkout -b feature/my-feature
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Commit your changes:
+git commit -m "feat: add my feature"
+
+Push and open a Pull Request
+
+<h2 id="license">📜 License</h2>
+
+This project is licensed under the MIT License.
+See the LICENSE file for more details.
+
+<h2 id="credits">🎨 Credits</h2>
+
+Logo Design: created by graphic designer [Giorgi Goderdzishvili](https://www.behance.net/giorgigoderdz?fbclid=PAQ0xDSwMZaQJleHRuA2FlbQIxMAABp-YhgeNvJP6XsPbp8jliP8-56Q_d7ZFqdEAk8FAeky5gzG4VDyMfpo9_GugW_aem_K0l3EUQ6YkF4mGIoHYtd5w)
+
+Project created and maintained by Nikolozi Natsvlishvili
+
+<h2 id="contact">📬 Contact</h2>
+
+👤 Nikolozi Natsvlishvili
+- GitHub: N4cvlia
+- Email: kaxa487@gmail.com
+- LinkedIn: http://linkedin.com/in/nikolozi-natsvlishvili-741363320/
